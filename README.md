@@ -1,4 +1,4 @@
-## <div>  <p align="center"> Course: Building Modern Web Applications with Go</p>  </div>
+## <div>  <p align="center"> Course: Building Modern Web Applications with Go </p>  </div>
 
 <div align="center"> 
   <a href="https://skillicons.dev">
