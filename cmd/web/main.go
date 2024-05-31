@@ -10,23 +10,32 @@ import (
 	"github.com/sseudes108/go-course/pkg/render"
 )
 
-const portNumber = ":8108"
+const portNumber = ":8080"
 
 // main is the Main aplication function
 func main() {
 	var app config.AppConfig
 
 	templateCache, err := render.CreateTemplateCache()
-
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	app.TemplateCache = templateCache
+	app.UseCache = false
 
-	http.HandleFunc("/", handlers.Home)
-	http.HandleFunc("/about", handlers.About)
+	repo := handlers.NewRepo(&app)
+	handlers.NewHandlers(repo)
+
+	render.NewTemplates(&app)
 
 	fmt.Println(fmt.Sprintf("Starting aplication on port%s", portNumber))
-	_ = http.ListenAndServe(portNumber, nil)
+
+	server := &http.Server{
+		Addr:    portNumber,
+		Handler: routes(&app),
+	}
+
+	err = server.ListenAndServe()
+	log.Fatal(err)
 }

@@ -7,28 +7,46 @@ import (
 	"log"
 	"net/http"
 	"path/filepath"
+
+	"github.com/sseudes108/go-course/pkg/config"
+	"github.com/sseudes108/go-course/pkg/models"
 )
 
 var functions = template.FuncMap{}
 
-// RenderTemplate renders template using html/template
-func RenderTemplate(w http.ResponseWriter, tmpl string) {
+var app *config.AppConfig
 
-	templateCache, err := CreateTemplateCache()
-	if err != nil {
-		log.Fatal(err)
+// NewTemplate sets the config for the template package
+func NewTemplates(appConfig *config.AppConfig) {
+	app = appConfig
+}
+
+func AddDefaultData(templData *models.TemplateData) *models.TemplateData {
+	return templData
+}
+
+// RenderTemplate renders template using html/template
+func RenderTemplate(w http.ResponseWriter, tmpl string, templData *models.TemplateData) {
+	var templateCache map[string]*template.Template
+
+	if app.UseCache {
+		templateCache = app.TemplateCache
+	} else {
+		templateCache, _ = CreateTemplateCache()
 	}
 
 	templ, ok := templateCache[tmpl]
 	if !ok {
-		log.Fatal(err)
+		log.Fatal("Could not get template from the template cache")
 	}
 
 	buff := new(bytes.Buffer)
 
-	_ = templ.Execute(buff, nil)
+	templData = AddDefaultData(templData)
 
-	_, err = buff.WriteTo(w)
+	_ = templ.Execute(buff, templData)
+
+	_, err := buff.WriteTo(w)
 	if err != nil {
 		fmt.Println("Error writing template to browser", err)
 	}
