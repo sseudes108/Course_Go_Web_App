@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
+	"github.com/alexedwards/scs/v2"
 	"github.com/sseudes108/go-course/pkg/config"
 	"github.com/sseudes108/go-course/pkg/handlers"
 	"github.com/sseudes108/go-course/pkg/render"
@@ -12,10 +14,26 @@ import (
 
 const portNumber = ":8080"
 
+var app config.AppConfig
+var session *scs.SessionManager
+
 // main is the Main aplication function
 func main() {
-	var app config.AppConfig
 
+	//Change when in production to true
+	//Session
+	app.InProduction = false
+
+	session = scs.New()
+	session.Lifetime = 24 * time.Hour
+	session.Cookie.Persist = true
+	session.Cookie.SameSite = http.SameSiteLaxMode
+	session.Cookie.Secure = app.InProduction
+
+	app.Session = session
+	//Session -
+
+	//Template
 	templateCache, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal(err)
@@ -28,9 +46,11 @@ func main() {
 	handlers.NewHandlers(repo)
 
 	render.NewTemplates(&app)
+	//Template -
 
-	fmt.Println(fmt.Sprintf("Starting aplication on port%s", portNumber))
+	fmt.Printf("Starting aplication on port%s\n", portNumber)
 
+	//http Server
 	server := &http.Server{
 		Addr:    portNumber,
 		Handler: routes(&app),
@@ -38,4 +58,5 @@ func main() {
 
 	err = server.ListenAndServe()
 	log.Fatal(err)
+	//http Server -
 }
