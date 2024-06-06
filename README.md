@@ -19,3 +19,7 @@ ___
     - Chi router: [github.com/go-chi/chi](github.com/go-chi/chi) v5.0.12
     - Alex Edwards SCS session management: [github.com/alexedwards/scs](github.com/alexedwards/scs) v2.8.0
     - Justinas NoSurf: [github.com/justinas/nosurf](github.com/justinas/nosurf) v1.1.1
+
+    - Bootstrap: [https://getbootstrap.com/](https://getbootstrap.com/) 5.3
+    - Mymth VanillaJs DatePicker: [https://github.com/mymth/vanillajs-datepicker](https://github.com/mymth/vanillajs-datepicker)
+    - Jared Reich Notie: [https://github.com/jaredreich/notie](https://github.com/jaredreich/notie)
