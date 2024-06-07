@@ -1,12 +1,70 @@
 {{template "base" .}}
 
+{{define "title"}}
+    Bookings and Reservations
+{{end}}
+
 {{define "content"}}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>This is the Home Page</h1>
-                <p>Some Text</p>
+    <section Carousel>
+        <div id="main-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            
+            <div class="carousel-indicators">
+
+                <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+
+                <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+
+                <button type="button" data-bs-target="#main-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
             </div>
+
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <img src="static/images/outside.png" class="d-block w-100" alt="Hotel view from outside">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Our Hotel</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="static/images/tray.png" class="d-block w-100" alt="Tray with coffe">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Breakfast</h5>
+                        <p>Tempora fuga atque inventore reprehenderit magni.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="static/images/woman-laptop.png" class="d-block w-100" alt="Woman with a laptop">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Fells like home</h5>
+                        <p>Culpa dicta nisi impedit quaerat perferendis odio.</p>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-    </div>
+    </section>
+
+    <section Main>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-center mt-4">Welcome to the Fort Smythe Bed and Breakfast</h1>
+                    <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde quia dignissimos, animi magnam itaque dolore tempore rem, quibusdam provident deserunt, assumenda quo maiores! Reiciendis in iure, ullam praesentium nam officia? Amet consectetur adipisicing elit. Fugit facilis saepe recusandae vitae officia consectetur quod ad placeat, dolorum, voluptates sunt velit quae, doloremque enim eos deserunt in expedita quia.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    <a href="/make-reservation" class="btn btn-success mb-4">Make Reservation Now</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
 {{end}}

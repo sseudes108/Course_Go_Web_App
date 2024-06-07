@@ -2,12 +2,24 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        
-        <title>Home Page</title>
+        <title>{{block "title" .}} {{end}}</title>
+
+        <section CSS Imports>
+            <!-- Bootstrap CSS -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+            <!-- Vanillajs Datepicker -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@latest/dist/css/datepicker.min.css">
+
+            <!-- Notie -->
+            <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+
+            <link rel="stylesheet" href="/static/CSS/style.css">
+        </section>    
 
         {{block "css" .}}
 
@@ -15,10 +27,87 @@
 
     </head>
     <body>
+        <section NavBar>
+            <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about">About</a>
+                            </li>
+    
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Rooms
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="/generals-quarters">General's Quarters</a></li>
+                                    <li><a class="dropdown-item" href="/majors-suite">Major's Suite</a></li>
+                                </ul>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="/search-availability">Book Now</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
 
         {{block "content" .}}
 
         {{end}}
+
+        <section Footer>
+            <nav class="my-footer sticky-bottom mt-4">
+                <div class="container-fluid">
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                            Left
+                        </div>
+                        <div class="col-auto">
+                            Center
+                        </div>
+                        <div class="col-auto">
+                            Right
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+        <section JS Imports>
+            <!-- Bootstrap scripts Bundle -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+            
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+            <!-- Vanillajs Datepicker -->
+            <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@latest/dist/js/datepicker-full.min.js"></script>
+
+            <!-- sweetalert2 -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <!-- Notie -->
+            <script src="https://unpkg.com/notie"></script>
+        </section>
 
         {{block "js" .}}
 
