@@ -1,7 +1,69 @@
 {{template "base" .}}
 
+{{define "title"}}
+    Major's Suite
+{{end}}
+
 {{define "css"}}
 {{end}}
 
 {{define "content"}}
+    <section Main>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto d-block">
+                    <img src="static/images/marjors-suite.png" class="img-fluid img-thumbnail" alt="Room Image"/>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-center mt-4">Major's Suite</h1>
+                    <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde quia dignissimos, animi magnam itaque dolore tempore rem, quibusdam provident deserunt, assumenda quo maiores! Reiciendis in iure, ullam praesentium nam officia? Amet consectetur adipisicing elit. Fugit facilis saepe recusandae vitae officia consectetur quod ad placeat, dolorum, voluptates sunt velit quae, doloremque enim eos deserunt in expedita quia.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    <a id="checkAvailabityBtn" href="#!" class="btn btn-success mb-4">Check Availability</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{{end}}
+
+{{define "js"}}
+    <script>
+        document.getElementById("checkAvailabityBtn").addEventListener("click", function(){
+            let html = `
+                <style>
+                    .swal2-popup .swal2-html-container {
+                        overflow: hidden;
+                    }
+                    .swal2-actions {
+                        z-index: 0;
+                    }
+                </style>
+                <form action="reservation.html" method="post" class="needs-validation">
+                    <div class="row" id="reservation-dates-modal">
+
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <input disabled required class="form-control" type="text" id="start" name="start" placeholder="Arrival">
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <input disabled required class="form-control" type="text" id="end" name="end" placeholder="Departure">
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            `
+            attention.custom({ msg: html, title: "Choose Your Dates" });
+        })
+    </script>
 {{end}}

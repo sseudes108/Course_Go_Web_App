@@ -1,6 +1,9 @@
 package handlers
 
 import (
+	"encoding/json"
+	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/sseudes108/Course_Go_Web_App/pkg/config"
@@ -28,32 +31,64 @@ func NewHandlers(repo *Repository) {
 	Repo = repo
 }
 
-// Home is the about page handler
+// Home Page
 func (repo *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
 }
 
-// About is the about page handler
+// About Page
 func (repo *Repository) About(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{})
 }
 
+// General's Quarters Page
 func (repo *Repository) Generals(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "generals.page.tmpl", &models.TemplateData{})
 }
 
+// Major's Suite Page
 func (repo *Repository) Majors(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "majors.page.tmpl", &models.TemplateData{})
 }
 
+// Make Reservation Page
 func (repo *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "make-reservation.page.tmpl", &models.TemplateData{})
 }
 
+// Availability Page
 func (repo *Repository) Availability(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "search-availability.page.tmpl", &models.TemplateData{})
 }
 
+func (repo *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
+	start := r.Form.Get("start")
+	end := r.Form.Get("End")
+
+	w.Write([]byte(fmt.Sprintf("start date is %s and end date is %s", start, end)))
+}
+
+type jsonResponse struct {
+	OK      bool   `json:""ok`
+	Message string `json:""message`
+}
+
+func (repo *Repository) AvailabilityJASON(w http.ResponseWriter, r *http.Request) {
+	response := jsonResponse{
+		OK:      true,
+		Message: "Available!",
+	}
+
+	out, err := json.MarshalIndent(response, "", "	")
+	if err != nil {
+		log.Print(err)
+	}
+
+	w.Header().Set("Content-type", "application/json")
+	w.Write(out)
+}
+
+// Contact Page
 func (repo *Repository) Contact(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "contact.page.tmpl", &models.TemplateData{})
 }

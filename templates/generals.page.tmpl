@@ -1,5 +1,9 @@
 {{template "base" .}}
 
+{{define "title"}}
+    General's Quarters
+{{end}}
+
 {{define "css"}}
 {{end}}
 
@@ -23,11 +27,58 @@
 
             <div class="row">
                 <div class="col text-center">
-                    <a href="/make-reservation-gq" class="btn btn-success mb-4">Check Availability</a>
+                    <a id="checkAvailabityBtn" href="#!" class="btn btn-success mb-4">Check Availability</a>
                 </div>
             </div>
 
         </div>
 
     </section>
+{{end}}
+
+{{define "js"}}
+    <script>
+        document.getElementById("checkAvailabityBtn").addEventListener("click", function(){
+            let html = `
+                <style>
+                    .swal2-popup .swal2-html-container {
+                        overflow: hidden;
+                    }
+                    .swal2-actions {
+                        z-index: 0;
+                    }
+                </style>
+                <form action="reservation.html" method="post" class="needs-validation">
+                    <div class="row" id="reservation-dates-modal">
+
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <input disabled required class="form-control" type="text" id="start" name="start" placeholder="Arrival">
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="form-group mb-3">
+                                <input disabled required class="form-control" type="text" id="end" name="end" placeholder="Departure">
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            `
+            attention.custom({ 
+                msg: html, 
+                title: "Choose Your Dates",
+                callback: function(result){
+                    console.log("Called")
+
+                    fetch('/search-availability-json')
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                    })
+                }
+            });
+        })
+    </script>
 {{end}}
