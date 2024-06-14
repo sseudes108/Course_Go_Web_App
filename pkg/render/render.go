@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"path/filepath"
 
+	"github.com/justinas/nosurf"
 	"github.com/sseudes108/Course_Go_Web_App/pkg/config"
 	"github.com/sseudes108/Course_Go_Web_App/pkg/models"
 )
@@ -21,12 +22,13 @@ func NewTemplates(appConfig *config.AppConfig) {
 	app = appConfig
 }
 
-func AddDefaultData(templData *models.TemplateData) *models.TemplateData {
+func AddDefaultData(templData *models.TemplateData, r *http.Request) *models.TemplateData {
+	templData.CSRFToken = nosurf.Token(r)
 	return templData
 }
 
 // RenderTemplate renders template using html/template
-func RenderTemplate(w http.ResponseWriter, tmpl string, templData *models.TemplateData) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, templData *models.TemplateData) {
 	var templateCache map[string]*template.Template
 
 	if app.UseCache {
@@ -42,7 +44,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, templData *models.Templa
 
 	buff := new(bytes.Buffer)
 
-	templData = AddDefaultData(templData)
+	templData = AddDefaultData(templData, r)
 
 	_ = templ.Execute(buff, templData)
 
