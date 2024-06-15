@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/sseudes108/Course_Go_Web_App/pkg/config"
-	"github.com/sseudes108/Course_Go_Web_App/pkg/handlers"
-	"github.com/sseudes108/Course_Go_Web_App/pkg/render"
+	"github.com/sseudes108/Course_Go_Web_App/internal/config"
+	"github.com/sseudes108/Course_Go_Web_App/internal/handlers"
+	"github.com/sseudes108/Course_Go_Web_App/internal/render"
 )
 
 const portNumber = ":8080"

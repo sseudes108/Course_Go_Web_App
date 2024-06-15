@@ -5,8 +5,8 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/sseudes108/Course_Go_Web_App/pkg/config"
-	"github.com/sseudes108/Course_Go_Web_App/pkg/handlers"
+	"github.com/sseudes108/Course_Go_Web_App/internal/config"
+	"github.com/sseudes108/Course_Go_Web_App/internal/handlers"
 )
 
 // routes manages the templates routes
