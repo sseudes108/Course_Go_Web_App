@@ -10,12 +10,15 @@
             <div class="row">
                 <div class="col">
                     <h1>Make Reservation</h1>
-                    <form method="post" action="" class="needs-validation" novalidate class="needs-validation">
+                    <form method="post" action="/make-reservation" class="" novalidate>
                         <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
 
                         <div class="form-group mt-5">
                             <label for="first_name">First Name:</label>
-                            <input type="text" name="first_name" id="first_name" class="form-control"  required autocomplete="off">
+                            {{with .Form.Errors.Get "first_name"}}
+                                <labelç class="text-danger">{{.}}</label>
+                            {{end}}
+                            <input class="form-control {{with .Form.Errors.Get "first_name"}} is-invalid {{end}}" type="text" name="first_name" id="first_name" required autocomplete="off">
                         </div>
 
                         <div class="form-group">
