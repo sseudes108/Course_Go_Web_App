@@ -54,8 +54,13 @@ func (repo *Repository) Majors(w http.ResponseWriter, r *http.Request) {
 
 // Render the make a reservatio page and displays form
 func (repo *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
+	var emptyReservations models.Reservation
+	data := make(map[string]interface{})
+	data["reservation"] = emptyReservations
+
 	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{
 		Form: forms.New(nil),
+		Data: data,
 	})
 }
 
@@ -75,10 +80,10 @@ func (repo *Repository) PostReservation(w http.ResponseWriter, r *http.Request) 
 	}
 
 	form := forms.New(r.PostForm)
-	form.Has("first_name", r)
-	form.Has("last_name", r)
-	form.Has("email", r)
-	form.Has("phone", r)
+
+	form.Required("first_name", "last_name", "email", "phone")
+
+	form.MinimunLength("first_name", 3, r)
 
 	if !form.Valid() {
 		data := make(map[string]interface{})
@@ -88,6 +93,7 @@ func (repo *Repository) PostReservation(w http.ResponseWriter, r *http.Request) 
 			Form: form,
 			Data: data,
 		})
+		return
 	}
 }
 

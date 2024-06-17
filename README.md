@@ -14,7 +14,7 @@ ___
 
 <h2> This repository holds the source code for "Booking and Reservations" project</h2>
 
-  - Built in go 1.22.3
+  - Built in go 1.22.3 (Needs 1.22.x)
   - Uses :
     - Chi router: [github.com/go-chi/chi](github.com/go-chi/chi) v5.0.12
     - Alex Edwards SCS session management: [github.com/alexedwards/scs](github.com/alexedwards/scs) v2.8.0
