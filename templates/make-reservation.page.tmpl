@@ -18,6 +18,7 @@
                             {{with .Form.Errors.Get "first_name"}}
                                 <labelç class="text-danger">{{.}}</label>
                             {{end}}
+                            <!-- sintaxe seens a broken string in VSCODE but it works -->
                             <input class="form-control {{with .Form.Errors.Get "first_name"}} is-invalid {{end}}" type="text" name="first_name" id="first_name" required autocomplete="off">
                         </div>
 
